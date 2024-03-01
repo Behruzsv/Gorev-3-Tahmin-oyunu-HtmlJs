@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tahmin Oyunu</title>
+  </head>
+  <body>
+    <label id="tahminLabel">1. tahmini girin:</label>
+    <input type="number" id="tahminInput" /><br />
+    <button onclick="tahminYap()">Tahmin yap</button>
+    <hr />
+    <label id="sonucLabel"></label>
+
+    <script>
+      var rastgeleSayi = Math.floor(Math.random() * 5) + 1;
+      var tahminSayisi = 1;
+      var sayiBulundu = false;
+
+      function tahminYap() {
+        if (sayiBulundu) {
+          return;
+        }
+
+        var tahmin = parseInt(document.getElementById("tahminInput").value);
+        var sonucLabel = document.getElementById("sonucLabel");
+
+        if (tahmin === rastgeleSayi) {
+          sonucLabel.innerText =
+            "Sayı " + tahminSayisi + " adet denemede bulundu.";
+          sayiBulundu = true;
+        } else if (tahminSayisi === 7) {
+          sonucLabel.innerText =
+            "Deneme hakkınız kalmadı. Kaybettiniz." && tahminSayisi == disabled;
+        } else if (tahmin < rastgeleSayi) {
+          sonucLabel.innerText = "Daha büyük bir sayı girin.";
+        } else {
+          sonucLabel.innerText = "Daha küçük bir sayı girin.";
+        }
+
+        tahminSayisi++;
+        document.getElementById("tahminLabel").innerText =
+          tahminSayisi + ". tahmini girin:";
+        document.getElementById("tahminInput").value = "";
+      }
+    </script>
+  </body>
+</html>
